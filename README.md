@@ -26,7 +26,7 @@
 
 - Una vez tengamos todo lo anterior realizado, podremos realizar los siguientes ***Scripts***
 
-  > ***IMPORTANTE!*** Si es la primera vez que ejecutamos el proyecto iniciar la base de datos con el *script* `npm installDB`. Mas detalles en ***SCRIPTS***
+  > ***IMPORTANTE!*** Si es la primera vez que ejecutamos el proyecto iniciar la base de datos con el *script* `npm run installDB`. Mas detalles en ***SCRIPTS***
 
 ### ***SCRIPTS***
 ---
