@@ -1,0 +1,23 @@
+### PLANTILLA
+POST http://localhost:<PORT>/apiv1
+Content-Type: application/json
+
+{
+    "nombre": "",
+    "venta": ,
+    "precio": ,
+    "photo": "",
+    "tag": [""]
+}
+
+### EJEMPLO
+POST http://localhost:8080/apiv1
+Content-Type: application/json
+
+{
+    "nombre": "Guitarra",
+    "venta": false,
+    "precio": 120,
+    "photo": "guitarra.jpg",
+    "tag": ["lifestyle", "work"]
+}
