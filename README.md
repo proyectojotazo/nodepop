@@ -89,6 +89,7 @@
   - **Visual Studio Code Extension:** ***REST Client***
 
     - Debemos instalar la extensión ***REST Client***
+    
     ![REST CLIENT](public/readme-imgs/post-rest-client.png)
 
     - Una vez instalada vamos a la carpeta `requests` y renombramos el archivo `create-ad.def.rest` a `create-ad.rest` y lo abrimos.     
