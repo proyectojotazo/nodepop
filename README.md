@@ -60,6 +60,8 @@
 
   - Deberemos de tener la imagen en la ruta `public/images` y el `<nombreimagen>` deberá ser el nombre del archivo y su extension. Ej: `public/images/bike.jpg` la ruta quedaría así: `localhost:PORT/images/bike.jpg`
 
+  > Por defecto tenemos 2 imagenes, bike.jpg y iphone11.jpg. Si quieres añadir más imagenes, debes introducirla en `public/images`
+
 ### ***CREAR NUEVOS ARTICULOS***
 ---
 
@@ -69,8 +71,38 @@
 
     - Deberemos crearnos una cuenta en [POSTMAN](https://www.postman.com)
     - Deberemos pasar los parametros como se indica en la siguiente imagen:
+
+      ![POST EN POSTMAN](public/readme-imgs/post-format-postman.png)
+
+    - La url donde hacer la petición ***POST*** será `http://localhost:XXXX/apiv1` donde `XXXX` será el puerto que tengamos asignado.
+
+    - Clickaremos en la pestaña ***BODY*** y seleccionaremos el tipo de codificación `x-www-form-urlencoded`
+
+    - Cada ***KEY*** será el párametro y el ***VALUE*** el valor que le queramos asignar a cada una
+
+      > Recuerda que ***venta*** será un parámetro booleano que solo aceptará ***true*** o ***false*** en función de si el anuncio es para vender o que se está buscando ese artículo
+
+    - ***IMPORTANTE*** Para añadir más de un *tag* hemos de pasarle tantas ***KEY*** y ***VALUE*** como tags queramos, como en la imagen
+
+    - Si todo está correcto, recibiremos la respuesta con un JSON con el anuncio creado
+
+  - **Visual Studio Code Extension:** ***REST Client***
+
+    - Debemos instalar la extensión ***REST Client***
+    ![REST CLIENT](public/readme-imgs/post-rest-client.png)
+
+    - Una vez instalada vamos a la carpeta `requests` y renombramos el archivo `create-ad.def.rest` a `create-ad.rest` y lo abrimos.     
+
+    ![REST CLIENT EXAMPLE](public/readme-imgs/rest-client-example.png)
+
+    - El archivo tendrá los datos de la izquierda en un principio.
+
+    - Simplemente debemos de cambiar el `<PORT>` por el que tengamos asignado y rellenar los campos tal y como se indica en el ejemplo.
+
+    - Una vez tengamos todo rellenado deberemos clickar donde aparece el mensaje `Send Request`.
+
+    - Si todo está correcto, nos aparecerá la respuesta en el lateral, tal y como se ve a la derecha de la imagen
     
-![POST EN POSTMAN](public/readme-imgs/post-format-postman.png)
 
 ### ***TRABAJANDO EN ELLO***
 ---
