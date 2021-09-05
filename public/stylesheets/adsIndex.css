@@ -1,0 +1,44 @@
+/*FONTS*/
+
+@font-face {
+    font-family: OpenSans-ExtraBold;
+    src: url(../fonts/OpenSans-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: OpenSans-ExtraBoldItalic;
+    src: url(../fonts/OpenSans-ExtraBoldItalic.ttf);
+}
+
+.title{
+    border-bottom: 1px solid black;
+    background-image: linear-gradient(0deg, rgba(48,48,48,1) 37%, rgba(60,135,58,1) 45%, rgba(55,96,54,1) 50%, rgba(48,48,48,1) 53%);
+    background-clip: border-box;
+    -webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+    font-family: OpenSans-ExtraBoldItalic;
+    font-size: 8rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.articles-title{
+    text-align: center;    
+}
+
+.cards-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    border: 1px solid #000;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    text-align: center;
+    width: 48%;
+    margin: .5rem;
+}
+
+/* background: rgb(48,48,48);
+background: linear-gradient(0deg, rgba(48,48,48,1) 37%, rgba(60,135,58,1) 45%, rgba(55,96,54,1) 50%, rgba(48,48,48,1) 53%); */
