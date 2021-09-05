@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Skeleton -->
+  <link rel="stylesheet" href="/stylesheets/skeleton/normalize.css">
+  <link rel="stylesheet" href="/stylesheets/skeleton/skeleton.css">
+  <link rel="stylesheet" href="/stylesheets/adsIndex.css">
+  <title>Nodepop</title>
+</head>
+
+<body>
+  <h1 class="title">NodePop</h1>
+  <!-- Ads Container -->
+  <div class="container">
+    <h2 class="articles-title">
+      Listado de articulos
+    </h2>
+    <!-- Ads wrapper -->
+    <div class="cards-wrapper">
+      <% ads.forEach(ad=> { %>
+        <div class="card">
+          <h3>
+            <%= ad.nombre %>
+          </h3>
+          <p>
+            <%= ad.venta ? 'En venta' : 'En busqueda' %>
+          </p>
+          <p>Precio: <%= ad.precio %>€</p>
+          <ul>Tags:</ul>
+          <% ad.tag.forEach(tag=> { %>
+            <li>
+              <%= tag %>
+            </li>
+            <% }) %>
+        </div>
+        <% }) %>
+    </div>
+    <!-- Ads wrapper END -->
+  </div>
+  <!-- Ads Container END -->
+</body>
+</html>
