@@ -69,7 +69,7 @@
 
     - Deberemos crearnos una cuenta en [POSTMAN](https://www.postman.com)
     - Deberemos pasar los parametros como se indica en la siguiente imagen:
-    ![POST EN POSTMAN](public\readme-imgs\post-format-postman.png)
+    ![POST EN POSTMAN](public/readme-imgs/post-format-postman-red.png)
 
 ### ***TRABAJANDO EN ELLO***
 ---
