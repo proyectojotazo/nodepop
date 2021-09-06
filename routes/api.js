@@ -15,8 +15,12 @@ apiRouter.get('/anuncios', async (req, res, next) => {
   // Articulos filtrados en API
   const [ query, optionals ] = getFilteredQuery(req.query)
   const adsFiltered = await Ad.find(query, null, optionals)
-  
-  res.json(adsFiltered)
+
+  if (adsFiltered.length === 0) {
+    res.json({message: 'No se han encontrado anuncios con los parametros especificados'})
+  } else {
+    res.json(adsFiltered)
+  }
 })
 
 apiRouter.post('/', (req, res, next) => {
