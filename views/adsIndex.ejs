@@ -21,23 +21,29 @@
     </h2>
     <!-- Ads wrapper -->
     <div class="cards-wrapper">
-      <% ads.forEach(ad=> { %>
-        <div class="card">
-          <h3>
-            <%= ad.nombre %>
-          </h3>
-          <p>
-            <%= ad.venta ? 'En venta' : 'En busqueda' %>
-          </p>
-          <p>Precio: <%= ad.precio %>€</p>
-          <ul>Tags:</ul>
-          <% ad.tag.forEach(tag=> { %>
-            <li>
-              <%= tag %>
-            </li>
-            <% }) %>
-        </div>
-        <% }) %>
+       <% if (ads.length !== 0) { %>
+        <% ads.forEach(ad=> { %>
+          <div class="card">
+            <h3>
+              <%= ad.nombre %>
+            </h3>
+            <p>
+              <%= ad.venta ? 'En venta' : 'En busqueda' %>
+            </p>
+            <p>Precio: <%= ad.precio %>€</p>
+            <ul>Tags:</ul>
+            <% ad.tag.forEach(tag=> { %>
+              <li>
+                <%= tag %>
+              </li>
+              <% }) %>
+          </div>
+          <% }) %>  
+       <% }else{ %>
+        <h5 class="no-data">No se han encontrado articulos con los parametros introducidos</h5>
+       <% }   %>
+        
+      
     </div>
     <!-- Ads wrapper END -->
   </div>
