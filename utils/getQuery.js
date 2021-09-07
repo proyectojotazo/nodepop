@@ -34,9 +34,6 @@ const getFilteredQuery = (queryParams = {}) => {
         sort: 'precio'
    * }
    */
-  const x = getFilterQuery(okParams)
-
-  console.log(x)
   return getFilterQuery(okParams)
   
 }
