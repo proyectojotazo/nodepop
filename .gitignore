@@ -63,3 +63,4 @@ typings/
 # others
 pruebas/
 create-ad.rest
+create-ad-errors.rest

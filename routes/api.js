@@ -25,13 +25,14 @@ apiRouter.get('/anuncios', async (req, res, next) => {
 
 apiRouter.post('/', (req, res, next) => {
   // Crear anuncio
-  const { nombre, venta, precio, photo, tag } = req.body
+  const { nombre, venta, precio, photo, tags } = req.body
+
   const newAd = new Ad({
-    nombre,
+    nombre, 
     venta,
     precio, 
     photo, 
-    tag
+    tags:tags.map(tag => tag.toLowerCase())
   })
   
   newAd.save()
