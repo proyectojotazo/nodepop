@@ -1,4 +1,4 @@
-const { checkParams } = require('./checkParams')
+const { transformParams } = require('./checkParams')
 
 
 const getFilteredQuery = (queryParams = {}) => {
@@ -19,11 +19,11 @@ const getFilteredQuery = (queryParams = {}) => {
      * Poniendo como ejemplo:
      * http://localhost:8080/apiv1/anuncios?tag=mobile&&nombre=ip&precio=50-&start=0&limit=2&sort=precio
      * queryParams = {
-     *  tag:'mobile', nombre: 'ip', precio: '50-', tag:'mobile', start: '0', limit: '2', sort: 'precio'
+     *  tag:'mobile', nombre: 'ip', precio: '50-', start: '0', limit: '2', sort: 'precio'
      * }
      */
   
-  const okParams = checkParams(queryParams)
+  const okParams = transformParams(queryParams)
   /**
    * okParams = {
    *    tag: 'mobile',
@@ -34,14 +34,9 @@ const getFilteredQuery = (queryParams = {}) => {
         sort: 'precio'
    * }
    */
-  //   const query = getFilterQuery(okParams)
-  /**
-     * query = [
-        { tag: 'mobile', nombre: /^ip/i, precio: { precio: [Object] } },
-        { skip: 0, limit: 2, sort: { precio: 1, nombre: 1 } }
-       ]
-     */
-  
+  const x = getFilterQuery(okParams)
+
+  console.log(x)
   return getFilterQuery(okParams)
   
 }
@@ -68,7 +63,7 @@ const getFilterQuery = (checkedParams = {}) => {
       filteredQuery[key] = regex
     } else if (key === 'precio') {
       filteredQuery[key] = getPrecioQuery(checkedParams[key])
-    } else if (key === 'tag'){
+    } else if (key === 'tags'){
       filteredQuery[key] = checkedParams[key]
     } else if (key === 'venta'){
       filteredQuery[key] = checkedParams[key]

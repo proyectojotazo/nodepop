@@ -1,18 +1,19 @@
-const checkParams = (queryParam = {}) => {
+const transformParams = (queryParam = {}) => {
   /**
-       * Comprobamos los parámetros 'venta', 'start', 'limit' y 'precio'
-       * recibidos por la query introducida en el navegador.
+       * Función que transformará los parámetros de 'String' a su correspondiente
+       * valor.
+       * 'Venta' ha de ser BOOLEAN
+       * 'Start' y 'Limit' han de ser NUMBER
+       * 'Precio' simplemente comprobamos que sea un valor numerico 
        */
   const paramsCopy = {...queryParam}      
-  checkVentaParam(paramsCopy)
-  checkStartLimitParam(paramsCopy)
-  checkTagParam(paramsCopy)
-  checkPrecioParam(paramsCopy)
-      
+  transformVentaParam(paramsCopy)
+  transformStartLimitParam(paramsCopy)
+  transformPrecioParam(paramsCopy)
   return paramsCopy
 }
     
-const checkVentaParam = (queryParam = {}) => {
+const transformVentaParam = (queryParam = {}) => {
   /**
        * Función que checkeará que el valor de 'venta' sea o 'true' o 'false'. 
        * En caso que en la query se pase un valor distinto, borraremos la 
@@ -20,20 +21,16 @@ const checkVentaParam = (queryParam = {}) => {
        */
   const ventaParams = ['true', 'false']
       
-  const getBool = (str = '') => {
-    return str === 'true'
-  }
-      
   if (queryParam['venta']){
     if (ventaParams.includes(queryParam['venta'])) { // Si el valor de la propiedad es 'true' o 'false'
-      queryParam['venta'] = getBool(queryParam['venta'])
+      queryParam['venta'] = queryParam['venta'] === 'true'
     } else { // Si el valor de la propiedad no es 'true' o 'false'
       delete queryParam['venta']
     }
   }
 }
     
-const checkStartLimitParam = (queryParam = {}) => {
+const transformStartLimitParam = (queryParam = {}) => {
   /**
        * Función que checkeará que el valor de 'start' o 'limit' sea un valor numerico. 
        * En caso que en la query se pase un valor distinto, borraremos la 
@@ -54,28 +51,14 @@ const checkStartLimitParam = (queryParam = {}) => {
         
 }
   
-const checkTagParam = (queryParam = {}) => {
-  /**
-       * Función que checkeará que el valor de 'tag' sea uno de los tags correctos. 
-       * En caso que en la query se pase un valor distinto, borraremos la 
-       * propiedad 'tag' y no se filtrará por este parámetro 
-       */
-  
-  const tagsPermitted = ['lifestyle', 'work', 'mobile', 'motors']
-  
-  if (!tagsPermitted.includes(queryParam['tag'])){
-    delete queryParam['tag']
-  }
-}
-  
-const checkPrecioParam = (queryParam = {}) => {
+const transformPrecioParam = (queryParam = {}) => {
   /**
        * Función que checkeará que el valor del 'precio' sea un valor numérico. 
        * En caso que en la query se pase un valor distinto, borraremos la 
        * propiedad 'precio' y no se filtrará por este parámetro 
        */
 
-  if (Object.prototype.hasOwnProperty.call(queryParam, 'precio')){
+  if (queryParam['precio']){
     const reg = /^[0-9]{1,}([.]{1}[0-9]{1,})?$/
     const nums = queryParam['precio'].split('-') || [] 
   
@@ -91,5 +74,5 @@ const checkPrecioParam = (queryParam = {}) => {
 }
 
 module.exports = {
-  checkParams
+  transformParams
 }
