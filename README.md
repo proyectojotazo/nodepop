@@ -74,7 +74,7 @@
   - Nombre: ***STRING*** 
   - Venta: ***BOOLEAN***
   - Precio: ***NUMBER***
-  - Tag: ***STRING***
+  - Tags: ***STRING***
   - Start: ***NUMBER***
   - Limit: ***NUMBER***
   - Sort: ***STRING***
