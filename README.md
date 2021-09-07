@@ -28,7 +28,7 @@
 
   > ***IMPORTANTE!*** Si es la primera vez que ejecutamos el proyecto iniciar la base de datos con el *script* `npm run installDB`. Mas detalles en ***SCRIPTS***
 
-### ***SCRIPTS***
+## ***SCRIPTS***
 ---
 
   - `npm start`: 
@@ -43,7 +43,7 @@
 
     - Script que nos inicializará la base de datos introduciendo 2 anuncios por defecto en nuestra base de datos
 
-### ***RUTAS***
+## ***RUTAS***
 ---
 
 - `localhost:PORT`:
@@ -60,9 +60,64 @@
 
   - Deberemos de tener la imagen en la ruta `public/images` y el `<nombreimagen>` deberá ser el nombre del archivo y su extension. Ej: `public/images/bike.jpg` la ruta quedaría así: `localhost:PORT/images/bike.jpg`
 
-  > Por defecto tenemos 2 imagenes, bike.jpg y iphone11.jpg. Si quieres añadir más imagenes, debes introducirla en `public/images`
+  > Por defecto tenemos 2 imagenes, bike.jpg y iphone11.jpg. Si quieres añadir más imagenes, debes introducirlas en `public/images`
 
-### ***CREAR NUEVOS ARTICULOS***
+## ***RUTAS FILTRADAS***
+---
+
+- ***RUTA VISTA ANUNCIOS***: `localhost:PORT/?parametro1=valor&parametro2=valor`
+
+- ***RUTA VISTA API***: `localhost:PORT/apiv1/anuncios/?parametro1=valor&parametro2=valor`
+
+- Parametros de filtrado permitidos:
+
+  - Nombre: ***STRING*** 
+  - Venta: ***BOOLEAN***
+  - Precio: ***NUMBER***
+  - Tag: ***STRING***
+  - Start: ***NUMBER***
+  - Limit: ***NUMBER***
+  - Sort: ***STRING***
+
+  ### Detalles a tener en cuenta:
+  ---
+
+    - ***Venta***: solo podrá tener el valor de ***TRUE*** o ***FALSE***, en caso de que se le pase otro valor, no se tendrá en cuenta a la hora del filtrado
+
+    - ***Precio***: el valor de precio puede ser cualquiera de los siguientes:
+
+    ```
+    precio=120 ==> Nos buscará todos los articulos que tengan EXACTAMENTE este precio
+
+    precio=120- ==> Nos buscará todos los articulos que tengan un precio mínimo de 120
+
+    precio=120-890 ==> Nos buscará todos los articulos que tengan un precio mínimo de 120 hasta un máximo de 890
+
+    precio=-890 ==> Nos buscará todos los articulos que tengan un precio máximo de 890
+    ```
+
+    - ***Start***: Define el numero de anuncios a 'saltarse' de nuestra lista
+
+      - Ejemplo: 
+
+        - `http://localhost:PORT/?precio=100-2500&start=2`
+
+        > Si por precio, nos encontrara 10 anuncios que coinciden en ese rango, los 2 primeros anuncios serian omitidos
+
+    - ***Limit***: Define la cantidad máxima de anuncios a mostrar de nuestra lista
+
+      - Ejemplo: 
+
+        - `http://localhost:PORT/?precio=100-2500&limit=5`
+
+        > Si por precio, nos encontrara 10 anuncios que coinciden en ese rango, nos mostraría los 5 primeros anuncios
+
+    - ***Sort***: Actualmente solo tiene 2 valores posibles `nombre` y `precio`.
+    Con `sort=nombre` se ordenaría nuestra lista de anuncios a mostrar por nombre y con `sort=precio` por precio, de menor a mayor
+
+  
+  
+## ***CREAR NUEVOS ARTICULOS***
 ---
 
 - Para realizar peticiones **POST** y crear nuevos articulos hay 2 opciones:
@@ -105,10 +160,8 @@
     - Si todo está correcto, nos aparecerá la respuesta en el lateral, tal y como se ve a la derecha de la imagen
     
 
-### ***TRABAJANDO EN ELLO***
+## ***TRABAJANDO EN ELLO***
 ---
-
-- Filtrado de articulos por parametros como, nombre, precio..., tanto en la vista como en la API
 
 - Estilizar con **CSS**  
 
