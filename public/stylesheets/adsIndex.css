@@ -10,25 +10,10 @@
     src: url(../fonts/OpenSans-ExtraBoldItalic.ttf);
 }
 
-.title{
-    border-bottom: 1px solid black;
-    background-image: linear-gradient(0deg, rgba(48,48,48,1) 37%, rgba(60,135,58,1) 45%, rgba(55,96,54,1) 50%, rgba(48,48,48,1) 53%);
-    background-clip: border-box;
-    -webkit-text-fill-color: transparent;
-	-webkit-background-clip: text;
-    font-family: OpenSans-ExtraBoldItalic;
-    font-size: 8rem;
-    padding-bottom: 1rem;
-    text-align: center;
-}
+/* Overriding Bootstrap classes */
 
-.articles-title{
-    text-align: center;    
-}
-
-.cards-wrapper{
-    display: flex;
-    flex-wrap: wrap;
+.container{
+    font-family: OpenSans-ExtraBold, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .card{
@@ -36,8 +21,37 @@
     margin-bottom: 1rem;
     padding-top: 1rem;
     text-align: center;
-    width: 48%;
+    width: 42%;
     margin: .5rem;
+}
+
+.card-header{
+    font-size: 1.8rem;
+    color: #3B7C39;
+}
+
+/* My styles */
+
+.title{
+    border-bottom: 1px solid black;
+    background-image: linear-gradient(0deg, rgba(48,48,48,1) 37%, rgba(60,135,58,1) 45%, rgba(55,96,54,1) 50%, rgba(48,48,48,1) 53%);
+    background-clip: border-box;
+    -webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+    font-family: OpenSans-ExtraBoldItalic, Verdana, Geneva, Tahoma, sans-serif ;
+    font-size: 5rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.articles-title{
+    text-align: center;
+    margin: 1rem ;    
+}
+
+.cards-wrapper{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .no-data{

@@ -3,6 +3,7 @@
 
 const apiRouter = require('express').Router()
 const Ad = require('../models/ad')
+
 const { getFilteredQuery } = require('../utils/getQuery')
 
 apiRouter.get('/', async (req, res, next) => {
@@ -16,15 +17,14 @@ apiRouter.get('/anuncios', async (req, res, next) => {
   const [ query, optionals ] = getFilteredQuery(req.query)
   const adsFiltered = await Ad.find(query, null, optionals)
 
-  if (adsFiltered.length === 0) {
-    res.json({message: 'No se han encontrado anuncios con los parametros especificados'})
-  } else {
-    res.json(adsFiltered)
-  }
+  if (adsFiltered.length === 0) return res.json({message: 'No se han encontrado anuncios con los parametros especificados'})
+  
+  res.json(adsFiltered)
 })
 
 apiRouter.post('/', (req, res, next) => {
   // Crear anuncio
+  // TODO: Refactor newAd?
   const { nombre, venta, precio, photo, tags } = req.body
 
   const newAd = new Ad({
