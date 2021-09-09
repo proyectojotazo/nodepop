@@ -158,12 +158,3 @@
     - Una vez tengamos todo rellenado deberemos clickar donde aparece el mensaje `Send Request`.
 
     - Si todo está correcto, nos aparecerá la respuesta en el lateral, tal y como se ve a la derecha de la imagen
-    
-
-## ***TRABAJANDO EN ELLO***
----
-
-- Estilizar con **CSS**  
-
-- Crear pagina de error personalizada
-
