@@ -13,7 +13,7 @@ adsRouter.get('/', asyncHandler(async (req, res, next) => {
 
   const [ query, optionals ] = getFilteredQuery(req.query)
 
-  const ads = await Ad.find(query, null, optionals)
+  const ads = await Ad.find(query, optionals)
   const rows = getAdsRowed(ads)
 
   res.render('ads/adsIndex', { rows })
