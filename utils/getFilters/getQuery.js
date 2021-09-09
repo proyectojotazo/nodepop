@@ -18,7 +18,7 @@ const getFilteredQuery = (queryParams = {}) => {
   /**
      * queryParams tendrá los parametros de la query introducida en el navegador
      * Poniendo como ejemplo:
-     * http://localhost:8080/apiv1/anuncios?tag=mobile&&nombre=ip&precio=50-&start=0&limit=2&sort=precio
+     * http://localhost:8080/apiv1/anuncios?tag=mobile&nombre=ip&precio=50-&start=0&limit=2&sort=precio
      * queryParams = {
      *  tag:'mobile', nombre: 'ip', precio: '50-', start: '0', limit: '2', sort: 'precio'
      * }
