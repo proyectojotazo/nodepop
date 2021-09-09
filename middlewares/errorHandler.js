@@ -2,9 +2,10 @@
 
 const routeNotFound = (err, req, res, next) => {
 
-  const urlSplitted = req.url.split('/')
+  const url = req.originalUrl
+  const reg = /^\/apiv1\//
 
-  if (urlSplitted[1].includes('apiv1')) res.status(404).json({error: 'Ruta no encontrada'}) // Vista de api
+  if (reg.test(url)) res.status(404).json({error: 'Ruta no encontrada'}) // Vista de api
   else res.status(404).render('ads/adsErrNotFound') // Vista de frontend
   
 }

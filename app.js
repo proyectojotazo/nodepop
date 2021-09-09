@@ -1,5 +1,5 @@
-const config = require('./utils/config')
-const mongoose = require('mongoose')
+// Mongoose Connection
+require('./utils/connection')
 
 // Default middlewares
 const express = require('express')
@@ -15,17 +15,7 @@ const { routeNotFound } = require('./middlewares/errorHandler')
 const adsRouter = require('./routes/ads')
 const apiRouter = require('./routes/api')
 
-
 const app = express()
-
-// connection to MONGODB
-mongoose.connect(config.MONGODB_URI)
-  .then(() => {
-    console.info('Connected to MongoDB')
-  })
-  .catch(err => {
-    console.error('Error connecting to MongoDB', err.message)
-  })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -42,13 +32,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', adsRouter)
 app.use('/apiv1', apiRouter)
 
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404))
 })
 
-app.use(routeNotFound) // Ads route not found
+app.use(routeNotFound) // Ads/Apiv1 route not found
 
 // error handler
 app.use(function (err, req, res) {
