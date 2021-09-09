@@ -3,49 +3,64 @@
 
 const apiRouter = require('express').Router()
 const Ad = require('../models/ad')
+const { createAd } = require('../utils/createAd')
 
-const { getFilteredQuery } = require('../utils/getQuery')
+const { getFilteredQuery } = require('../utils/getFilters/getQuery')
+const { getTags } = require('../utils/getTags')
 
 apiRouter.get('/', async (req, res, next) => {
   // Obtener todos los articulos
-  const ads = await Ad.find()
-  res.json(ads)
+  try {
+    const ads = await Ad.find()
+
+    res.json(ads)  
+  } catch (e) {
+    console.log(e)
+    next(e)
+  }
+  
 })
 
 apiRouter.get('/anuncios', async (req, res, next) => {
   // Articulos filtrados en API
-  const [ query, optionals ] = getFilteredQuery(req.query)
-  const adsFiltered = await Ad.find(query, null, optionals)
+  try {
+    const [ query, optionals ] = getFilteredQuery(req.query)
+    const adsFiltered = await Ad.find(query, null, optionals)
 
-  if (adsFiltered.length === 0) return res.json({message: 'No se han encontrado anuncios con los parametros especificados'})
+    if (adsFiltered.length === 0) return res.json({message: 'No se han encontrado anuncios con los parametros especificados'})
   
-  res.json(adsFiltered)
+    res.json(adsFiltered)
+  } catch (e) {
+    console.log(e)
+    next(e)
+  }
 })
 
-apiRouter.get('/tags', (req, res, next) => {
+apiRouter.get('/tags', async (req, res, next) => {
   //Mostrar tags
-  res.json({message: 'Mostrar tags'})
+  
+  try{
+    const ads = await Ad.find()
+    const tags = getTags(ads)
+    
+    res.json(tags)
+  } catch(e){
+    console.log(e)
+    next(e)
+  }
   
 })
 
 apiRouter.post('/', (req, res, next) => {
   // Crear anuncio
-  // TODO: Refactor newAd?
-  const { nombre, venta, precio, photo, tags } = req.body
 
-  const newAd = new Ad({
-    nombre, 
-    venta,
-    precio, 
-    photo, 
-    tags:tags.map(tag => tag.toLowerCase())
-  })
-  
+  const newAd = createAd(req.body, Ad)
+
   newAd.save()
     .then(savedAd => {
       res.json(savedAd)
     })
-    .catch(err => next(err))
+    .catch(e => next(e))
   
 })
 

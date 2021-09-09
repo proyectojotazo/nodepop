@@ -3,7 +3,7 @@
 const adsRouter = require('express').Router()
 const Ad = require('../models/ad')
 
-const { getFilteredQuery } = require('../utils/getQuery')
+const { getFilteredQuery } = require('../utils/getFilters/getQuery')
 const { getAdsRowed } = require('../utils/getAdsRowed')
 
 
