@@ -1,14 +1,20 @@
 const config = require('./utils/config')
 const mongoose = require('mongoose')
 
+// Default middlewares
 const express = require('express')
 const createError = require('http-errors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
+// Error middlewares
+const { routeNotFound } = require('./middlewares/errorHandler')
+
+// Routes
 const adsRouter = require('./routes/ads')
 const apiRouter = require('./routes/api')
+
 
 const app = express()
 
@@ -41,6 +47,8 @@ app.use('/apiv1', apiRouter)
 app.use(function (req, res, next) {
   next(createError(404))
 })
+
+app.use(routeNotFound) // Ads route not found
 
 // error handler
 app.use(function (err, req, res) {

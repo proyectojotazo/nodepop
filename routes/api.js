@@ -22,6 +22,12 @@ apiRouter.get('/anuncios', async (req, res, next) => {
   res.json(adsFiltered)
 })
 
+apiRouter.get('/tags', (req, res, next) => {
+  //Mostrar tags
+  res.json({message: 'Mostrar tags'})
+  
+})
+
 apiRouter.post('/', (req, res, next) => {
   // Crear anuncio
   // TODO: Refactor newAd?

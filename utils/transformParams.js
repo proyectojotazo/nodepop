@@ -6,13 +6,16 @@ const transformParams = (queryParam = {}) => {
        * 'Start' y 'Limit' han de ser NUMBER
        * 'Precio' simplemente comprobamos que sea un valor numerico 
        */
-  const paramsCopy = {...queryParam}      
+
+  const paramsCopy = {...queryParam}
+
   transformVentaParam(paramsCopy)
   transformStartLimitParam(paramsCopy)
   transformPrecioParam(paramsCopy)
+
   return paramsCopy
 }
-    
+
 const transformVentaParam = (queryParam = {}) => {
   /**
        * Función que checkeará que el valor de 'venta' sea o 'true' o 'false'. 
@@ -38,9 +41,11 @@ const transformStartLimitParam = (queryParam = {}) => {
        */  
   const paramsToCheck = ['start', 'limit']
       
+  
   paramsToCheck.forEach( param => {
+    
     if (queryParam[param]){
-      const reg = /^[0-9]$/
+      const reg = /^[0-9]{1,}$/
       if (!reg.test(queryParam[param])){ // Si no es un valor numérico
         delete queryParam[param]
       } else { // Si es un valor numérico

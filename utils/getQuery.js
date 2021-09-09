@@ -1,4 +1,5 @@
-const { transformParams } = require('./checkParams')
+const { checkEmptyParams } = require('./checkEmptyParams')
+const { transformParams } = require('./transformParams')
 
 
 const getFilteredQuery = (queryParams = {}) => {
@@ -22,11 +23,14 @@ const getFilteredQuery = (queryParams = {}) => {
      *  tag:'mobile', nombre: 'ip', precio: '50-', start: '0', limit: '2', sort: 'precio'
      * }
      */
+
+  let okParams = checkEmptyParams(queryParams)
   
-  const okParams = transformParams(queryParams)
+  okParams = transformParams(okParams)
   /**
    * okParams = {
    *    tag: 'mobile',
+   *    venta: true,
         nombre: 'ip',
         precio: '50-',
         start: 0,
@@ -34,6 +38,7 @@ const getFilteredQuery = (queryParams = {}) => {
         sort: 'precio'
    * }
    */
+  
   return getFilterQuery(okParams)
   
 }
@@ -84,13 +89,13 @@ const getPrecioQuery = (precioParam = '') => {
   const longParam = paramSplitted.length
     
   if (longParam === 1){ // Cuando precioParam sea '12'
-    precioQuery = Number(precioParam)
+    precioQuery = Number(paramSplitted[0]) 
   } else { // Cuando precioParam sea cualquier otro caso
-    if (paramSplitted[0] === ''){ // si paramSplitted = ['', '200']
+    if (paramSplitted[0] === ''){ // si paramSplitted = ['', '200'] o precioParam = -200
       precioQuery = {'$lte': Number(paramSplitted[1])}
-    } else if (paramSplitted[1] === ''){ // si paramSplitted = ['12', '']
+    } else if (paramSplitted[1] === ''){ // si paramSplitted = ['12', ''] o precioParam = 12-
       precioQuery = {'$gte': Number(paramSplitted[0])}
-    } else { // si paramSplitted = ['12', '200]
+    } else { // si paramSplitted = ['12', '200] o percioParam = 12-200
       precioQuery = {'$gte': Number(paramSplitted[0]), '$lte': Number(paramSplitted[1])}
     } 
   }
@@ -110,21 +115,21 @@ const getOptionals = (checkedParams = {}) => {
      * por el nombre
      */
   const optionals = {}
-  const hasProperty = Object.prototype.hasOwnProperty
 
-  if (hasProperty.call(checkedParams, 'start')){
+  if (checkedParams['start']){
     optionals['skip'] = checkedParams['start']
   }
 
-  if (hasProperty.call(checkedParams, 'limit')){
+  if (checkedParams['limit']){
     optionals['limit'] = checkedParams['limit']
   }
 
-  if (hasProperty.call(checkedParams, 'sort')){
+  if (checkedParams['sort']){
     optionals['sort'] = { [checkedParams['sort']] : 1}
-    if (!hasProperty.call(optionals['sort'], 'nombre')){
+    if (!optionals['sort']['nombre']){
       optionals['sort'] = { ...optionals['sort'], nombre : 1}
     }
+    
   }
 
   return optionals

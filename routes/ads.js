@@ -11,12 +11,16 @@ adsRouter.get('/', async (req, res, next) => {
 
   const [ query, optionals ] = getFilteredQuery(req.query)
   
-  const ads = await Ad.find(query, null, optionals)
-  
-  const rows = getAdsRowed(ads)
-  
+  try{
+    const ads = await Ad.find(query, null, optionals)
+    const rows = getAdsRowed(ads)
 
-  res.render('adsIndex', { rows })
+    res.render('ads/adsIndex', { rows })
+  } catch(e){
+    
+    res.send('Error')
+  }
+    
 })
 
 module.exports = adsRouter
