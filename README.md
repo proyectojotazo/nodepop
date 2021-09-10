@@ -22,7 +22,9 @@
   - PORT = `<puerto a usar>`
   - MONGODB_URI = `<mongodb_URI>`
 
-  > Una vez hayamos rellenado los campos correspondientes, renombraremos el archivo `.env.default` a `.env`
+  > Una vez hayamos rellenado los campos correspondientes, renombraremos el archivo `.env.default` a `.env`. 
+
+- En caso de no rellenar las variables de entorno, por defecto la aplicación usará el puerto `3000` y nos generará una base de datos llamada `anuncios`
 
 - Una vez tengamos todo lo anterior realizado, podremos realizar los siguientes ***Scripts***
 
