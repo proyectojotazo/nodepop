@@ -5,15 +5,16 @@ const Ad = require('../models/ad')
 
 const asyncHandler = require('express-async-handler')
 
-const { getFilteredQuery } = require('../utils/getFilters/getQuery')
 const { getAdsRowed } = require('../utils/getAdsRowed')
+const { getQuery } = require('../utils/getQuery/getQuery')
 
 
 adsRouter.get('/', asyncHandler(async (req, res, next) => {
 
-  const [ query, optionals ] = getFilteredQuery(req.query)
-
-  const ads = await Ad.find(query, optionals)
+  const [query, optionals ] = getQuery(req.query)
+  
+  const ads = await Ad.find(query, null, optionals)
+  
   const rows = getAdsRowed(ads)
 
   res.render('ads/adsIndex', { rows })
