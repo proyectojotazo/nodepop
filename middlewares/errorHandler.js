@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+const { codifyError } = require('../utils/codifyPostError')
+
 const routeNotFound = (err, req, res, next) => {
 
   const url = req.originalUrl
@@ -10,6 +12,14 @@ const routeNotFound = (err, req, res, next) => {
   
 }
 
+const postValidation = (err, req, res, next) => {
+
+  const errorCodified = codifyError(err)
+  
+  res.status(422).json(errorCodified)
+}
+
 module.exports = {
-  routeNotFound
+  routeNotFound,
+  postValidation
 }

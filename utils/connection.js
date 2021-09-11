@@ -9,4 +9,5 @@ mongoose.connect(config.MONGODB_URI)
   })
   .catch(err => {
     console.error('Error connecting to MongoDB', err.message)
+    process.exit()
   })

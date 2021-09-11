@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const { tagsValidators } = require('./customValidators')
+
 const adSchema = new mongoose.Schema({
   nombre:{
     type: String,
@@ -16,14 +18,7 @@ const adSchema = new mongoose.Schema({
   photo: String,
   tags: {
     type: [String],
-    enum: {
-      values: ['lifestyle', 'work', 'mobile', 'motor'],
-      message: '{VALUE} no es un tag válido'
-    },
-    validate: {
-      validator: (v) => v.length !== 0, // Validamos que no venga vacío el arr
-      message: 'Ha de tener 1 tag mínimo'
-    }
+    validate: tagsValidators
   }
 })
 

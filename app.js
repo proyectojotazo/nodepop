@@ -37,6 +37,7 @@ app.use(function (req, res, next) {
   next(createError(404))
 })
 
+// Errors
 app.use(routeNotFound) // Ads/Apiv1 route not found
 
 // error handler

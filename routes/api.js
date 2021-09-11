@@ -9,6 +9,10 @@ const { createAd } = require('../utils/createAd')
 const { getTags } = require('../utils/getTags')
 const { getQuery } = require('../utils/getQuery/getQuery')
 
+const { postValidation } = require('../middlewares/errorHandler')
+
+
+
 apiRouter.get('/', asyncHandler(async (req, res, next) => {
   // Obtener todos los articulos
 
@@ -42,13 +46,14 @@ apiRouter.get('/tags', asyncHandler(async (req, res, next) => {
 
 apiRouter.post('/', asyncHandler(async (req, res, next) => {
   // Crear anuncio
-
-  const newAd = createAd(req.body, Ad)
-
-  const savedAd = await newAd.save()
-
-  res.status(201).json(savedAd)
   
+  const newAd = createAd(req.body, Ad)
+  const savedAd = await newAd.save()
+  res.status(201).json(savedAd)
+
 }))
+
+// Middleware validación POST
+apiRouter.use(postValidation)
 
 module.exports = apiRouter
