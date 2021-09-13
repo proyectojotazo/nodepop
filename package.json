@@ -5,7 +5,12 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon",
-    "installDB": "node install_db"
+    "installDB": "node install_db",
+    "installDB:full": "node install_db fullads",
+    "default:start": "npm run installDB && npm start",
+    "default:dev": "npm run installDB && npm run dev",
+    "fullDB:start":"npm run installDB:full && npm start",
+    "fullDB:dev": "npm run installDB:full && npm run dev"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
