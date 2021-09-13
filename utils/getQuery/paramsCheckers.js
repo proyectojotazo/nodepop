@@ -1,4 +1,8 @@
 const isValidName = (name = '') => {
+  /**
+   * Función con regex que comprueba que sea cualquier letra. 
+   * No admite dígitos ni carácteres especiales
+   */
   const reg = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/i
   return reg.test(name)
 }
@@ -35,6 +39,10 @@ const isValidVenta = (venta = '') => {
 }
 
 const isValidSkipLimit = (skip = '') => {
+  /**
+   * Funcion que comprueba que skip sea numérico, tendrá un 
+   * máximo de 2 digitos
+   */
   const reg = /^[0-9]{1,2}$/
   return reg.test(skip)
 }
