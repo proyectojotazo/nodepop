@@ -1,24 +1,10 @@
 /* eslint-disable no-unused-vars */
-
 const adsRouter = require('express').Router()
-const Ad = require('../models/ad')
 
-const asyncHandler = require('express-async-handler')
-
-const { getAdsRowed } = require('../utils/getAdsRowed')
-const { getQuery } = require('../utils/getQuery/getQuery')
+const adsController = require('../controllers/adsController')
 
 
-adsRouter.get('/', asyncHandler(async (req, res, next) => {
+adsRouter.get('/', adsController.getAds)
 
-  const [query, optionals ] = getQuery(req.query)
-  
-  const ads = await Ad.find(query, null, optionals)
-  
-  const rows = getAdsRowed(ads)
-
-  res.render('ads/adsIndex', { rows })
-      
-}))
 
 module.exports = adsRouter
