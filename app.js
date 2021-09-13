@@ -1,5 +1,5 @@
 // Mongoose Connection
-require('./utils/connection')
+require('./lib/connection')
 
 // Default middlewares
 const express = require('express')

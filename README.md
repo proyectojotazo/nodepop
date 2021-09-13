@@ -28,14 +28,12 @@
 
 - Una vez tengamos todo lo anterior realizado, podremos realizar los siguientes ***Scripts***
 
-  > ***IMPORTANTE!*** Si es la primera vez que ejecutamos el proyecto iniciar la base de datos con el *script* `npm run installDB`. Mas detalles en ***SCRIPTS***
-
 ## ***SCRIPTS***
 ---
 
   - `npm start`: 
 
-    - Se ejecutará el archivo `bin/www`. Abrimos el navegador e introducimos `localhost:<numPORT>` o `127.0.0.1:<numPORT>` y nos aparecerá la página principal de ***NodePop***
+    - Se ejecutará el archivo `bin/www`. Abrimos el navegador e introducimos `localhost:<numPORT>` o `127.0.0.1:<numPORT>` y nos aparecerá la página principal de ***NodePop***. Si hemos completado el archivo `.env` pondremos el puerto usado en él. Si no, el puerto por defecto es el `3000`
   
   - `npm run dev`:
 
@@ -44,6 +42,27 @@
   - `npm run installDB`:
 
     - Script que nos inicializará la base de datos introduciendo 2 anuncios por defecto en nuestra base de datos
+
+  - `npm run installDB:full`:
+
+    - Script que nos inicializará la base de datos introduciendo múltiples anuncios por defecto en nuestra base de datos
+
+  - `npm run default:start`:
+
+    - Script combinado de: `npm run installDB` y `npm start`
+
+  - `npm run default:dev`:
+
+    - Script combinado de: `npm run installDB` y `npm run dev`
+
+  - `npm run fullDB:start`:
+
+    - Script combinado de: `npm run installDB:full` y `npm start`
+
+  - `npm run fullDB:dev`:
+
+    - Script combinado de: `npm run installDB:full` y `npm run dev`
+
 
 ## ***RUTAS***
 ---
@@ -114,7 +133,7 @@
 
         > Si por precio, nos encontrara 10 anuncios que coinciden en ese rango, nos mostraría los 5 primeros anuncios
 
-    - ***Sort***: Actualmente solo tiene 2 valores posibles `nombre` y `precio`.
+    - ***Sort***: Solo tiene 2 valores posibles `nombre` y `precio`.
     Con `sort=nombre` se ordenaría nuestra lista de anuncios a mostrar por nombre y con `sort=precio` por precio, de menor a mayor
 
   

@@ -1,14 +1,14 @@
 const mongoose = require('mongoose')
 const asyncHandler = require('express-async-handler')
-const argvs = process.argv
 
 const Ad = require('./models/ad')
 
-const { MONGODB_URI } = require('./utils/config')
+const { MONGODB_URI } = require('./lib/config')
 
 const { ads } = require('./ads.json')
 const { fullads } = require('./fullads.json')
 
+const argvs = process.argv
 
 const deleteAllData = asyncHandler(async () => {
 
@@ -27,23 +27,9 @@ const loadDefaultData = asyncHandler(async () => {
 
 const main = asyncHandler(async () => {
   await mongoose.connect(MONGODB_URI)
-  console.info('Connected to MongoDB')
+  console.info(`Connected to MongoDB, at ${mongoose.connection.name} database`)
   await deleteAllData()
   await loadDefaultData()
 })
 
 main()
-
-// mongoose.connect(MONGODB_URI)
-//   .then(asyncHandler(async() => {
-//     console.info('Connected to MongoDB')
-
-//     await deleteAllData()
-//     await loadDefaultData()
-
-//   }))
-//   .catch(err => {
-//     console.error('Error connecting to MongoDB\n', err.message)
-//   })
-
-
