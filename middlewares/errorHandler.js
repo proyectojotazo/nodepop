@@ -16,7 +16,7 @@ const postValidation = (err, req, res, next) => {
 
   const errorCodified = codifyError(err)
   
-  res.status(422).json(errorCodified)
+  res.status(400).json(errorCodified)
 }
 
 module.exports = {
