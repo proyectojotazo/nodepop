@@ -8,7 +8,7 @@ const tagsValidators = [
     message: 'Debe contener mínimo 1 tag'
   },
   {
-    validator: (v) => v.length < 4,
+    validator: (v) => v.length < 5,
     message: 'Debe contener maximo 4 tags'
   }
 ]
