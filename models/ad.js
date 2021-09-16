@@ -15,7 +15,10 @@ const adSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Precio del articulo requerido']
   },
-  photo: String,
+  photo: {
+    type: String,
+    required: [true, 'Imagen del articulo requerida']
+  },
   tags: {
     type: [String],
     validate: tagsValidators

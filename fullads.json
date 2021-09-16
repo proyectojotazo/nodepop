@@ -127,7 +127,7 @@
         },
         {
             "nombre": "Pala Padel Head",
-            "venta": false,
+            "venta": true,
             "precio": 50,
             "photo": "palahead.jpg",
             "tags": [
@@ -160,7 +160,7 @@
         },
         {
             "nombre": "Final fantasy VII",
-            "venta": false,
+            "venta": true,
             "precio": 150,
             "photo": "ffvii.png",
             "tags": [
@@ -170,7 +170,7 @@
         },
         {
             "nombre": "PS4 con mando",
-            "venta": false,
+            "venta": true,
             "precio": 200,
             "photo": "ps4.jpg",
             "tags": [

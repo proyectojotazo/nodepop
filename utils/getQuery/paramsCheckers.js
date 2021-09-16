@@ -19,7 +19,8 @@ const isValidPrice = (price = '') => {
   if (nums.length === 3 && 
     (nums[0] === '' && nums[1] === '') || // caso --23
     (nums[0] === '' && nums[2] === '') || // caso -23-
-    (nums[1] === '' && nums[2] === '')){ // caso 23--
+    (nums[1] === '' && nums[2] === '')
+  ){ // caso 23--
     return false
   }
 

@@ -2,8 +2,6 @@
 const createAd = (adParams = {}, model) => {
   const { nombre, venta, precio, photo, tags } = adParams
 
-  //TODO: CHECK! Si precio true o 'true' o false o 'false' lo transforma a numerico (1, 0).
-
   // Eliminamos los valores 'null' y 'true' en caso de que se pasen
   const validTags = tags.filter(tag => (tag !== null && tag !== true))
   
