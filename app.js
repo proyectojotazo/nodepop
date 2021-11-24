@@ -12,8 +12,7 @@ const logger = require('morgan')
 const { routeNotFound } = require('./middlewares/errorHandler')
 
 // Routes
-const adsRouter = require('./routes/ads')
-const apiRouter = require('./routes/api')
+const { adsRouter, apiRouter, changeLocaleRouter } = require('./routes')
 
 const app = express()
 
@@ -28,9 +27,14 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+
+const i18n = require('./lib/i18nConfigure')
+app.use(i18n.init)
+
 // routes
 app.use('/', adsRouter)
 app.use('/apiv1', apiRouter)
+app.use('/change-locale', changeLocaleRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,11 +1,8 @@
-/* eslint-disable no-unused-vars */
-
 const apiRouter = require('express').Router()
 
-const apiController = require('../controllers/apiController')
+const { apiController }  = require('../controllers')
 
 const { postValidation } = require('../middlewares/errorHandler')
-
 
 apiRouter.get('/', apiController.getAll)
 

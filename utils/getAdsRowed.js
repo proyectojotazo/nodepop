@@ -1,16 +1,15 @@
 const getAdsRowed = (adsList = []) => {
-
   /**
-     * Función para facilitar la iteración y creación de 'rows' y 'cards'
-     * en la vista 'adsForEach'
-     */
-  
+   * Función para facilitar la iteración y creación de 'rows' y 'cards'
+   * en la vista 'adsForEach'
+   */
+
   const rows = []
-  let row =[]
-  
-  adsList.forEach( (ad) => { 
+  let row = []
+
+  adsList.forEach((ad) => {
     row.push(ad)
-    if (row.length === 2){
+    if (row.length === 2) {
       rows.push(row)
       row = []
     }
@@ -23,17 +22,14 @@ const getAdsRowed = (adsList = []) => {
    * [
    *    [ {ad}, {ad} ]
    * ]
-   * Si no rows = 
+   * Si no rows =
    * [
    *    [ {ad}, {ad} ],
    *    [ {ad},]
    * ]
    */
-  
+
   return rows
-    
 }
 
-module.exports = {
-  getAdsRowed
-}
+module.exports = getAdsRowed

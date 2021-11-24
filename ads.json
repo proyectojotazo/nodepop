@@ -1,18 +1,18 @@
 {
-    "ads": [
-        {
-            "nombre": "Bike",
-            "venta": true,
-            "precio": 230.15,
-            "photo": "bike.jpg",
-            "tags": ["lifestyle", "motor"]
-        },
-        {
-            "nombre": "Iphone 11",
-            "venta": false,
-            "precio": 486.00,
-            "photo": "iphone11",
-            "tags": ["lifestyle", "mobile"]
-        }
-    ]
+  "ads": [
+    {
+      "nombre": "Bike",
+      "venta": true,
+      "precio": 230.15,
+      "photo": "bike.jpg",
+      "tags": ["lifestyle", "motor"]
+    },
+    {
+      "nombre": "Iphone 11",
+      "venta": false,
+      "precio": 486.0,
+      "photo": "iphone11",
+      "tags": ["lifestyle", "mobile"]
+    }
+  ]
 }

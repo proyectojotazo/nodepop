@@ -1,0 +1,16 @@
+<div class="wrapper-language-selector">
+  <span class="language-selector-text"><%= __('Select Language') %>:</span>
+  <ul class="language-selector-list">
+    <% getLocales().forEach(locale => { %>
+    <li class="language-selector-item">
+      <a href="change-locale/<%= locale %>" class="language-selector-link">
+        <% if (locale === 'es') { %>
+          <%= __('Spanish') %>
+        <% } else { %>
+          <%= __('English') %>
+        <% } %>
+      </a>
+    </li>
+    <% }) %>
+  </ul>
+</div>

@@ -1,69 +1,148 @@
 /*FONTS*/
 
 @font-face {
-    font-family: OpenSans-ExtraBold;
-    src: url(../fonts/OpenSans-ExtraBold.ttf);
+  font-family: OpenSans-ExtraBold;
+  src: url(../fonts/OpenSans-ExtraBold.ttf);
 }
 
 @font-face {
-    font-family: OpenSans-ExtraBoldItalic;
-    src: url(../fonts/OpenSans-ExtraBoldItalic.ttf);
+  font-family: OpenSans-ExtraBoldItalic;
+  src: url(../fonts/OpenSans-ExtraBoldItalic.ttf);
+}
+
+/* RESET STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Overriding Bootstrap classes */
 
-.container{
-    font-family: OpenSans-ExtraBold, Verdana, Geneva, Tahoma, sans-serif;
+.container {
+  font-family: OpenSans-ExtraBold, Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.card{
-    border: 1px solid #000;
-    margin-bottom: 1rem;
-    padding-top: 1rem;
-    text-align: center;
-    width: 42%;
-    margin: .5rem;
+.card {
+  border: 1px solid #000;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  text-align: center;
+  width: 42%;
+  margin: 0.5rem;
 }
 
-.card-header{
-    font-size: 1.8rem;
-    color: #3B7C39;
+.card-header {
+  font-size: 1.8rem;
+  color: #3b7c39;
+}
+
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+.navbar-nav {
+  gap: 2rem;
 }
 
 /* My styles */
 
-.title{
-    border-bottom: 1px solid black;
-    background-image: linear-gradient(0deg, rgba(48,48,48,1) 37%, rgba(60,135,58,1) 45%, rgba(55,96,54,1) 50%, rgba(48,48,48,1) 53%);
-    background-clip: border-box;
-    -webkit-text-fill-color: transparent;
-	-webkit-background-clip: text;
-    font-family: OpenSans-ExtraBoldItalic, Verdana, Geneva, Tahoma, sans-serif ;
-    font-size: 5rem;
-    padding-bottom: 1rem;
-    text-align: center;
+/* HEADER */
+
+.header {
+  border-bottom: 1px solid black;
+  position: relative;
 }
 
-.articles-title{
-    text-align: center;
-    margin: 1rem ;    
+.title {
+  background-image: linear-gradient(
+    0deg,
+    rgba(48, 48, 48, 1) 37%,
+    rgba(60, 135, 58, 1) 45%,
+    rgba(55, 96, 54, 1) 50%,
+    rgba(48, 48, 48, 1) 53%
+  );
+  background-clip: border-box;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-family: OpenSans-ExtraBoldItalic, Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 5rem;
+  padding-bottom: 1rem;
+  text-align: center;
 }
 
-.cards-wrapper{
-    display: flex;
-    flex-wrap: wrap;
+/* LANGUAGE SELECTOR */
+
+.wrapper-language-selector {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
-.no-data{
-    width: 100%;
-    text-align: center;
+.language-selector-list {
+  list-style: none;
+}
+
+.language-selector-item {
+  text-align: center;
+}
+
+.language-selector-link {
+  font-weight: 700;
+  color: #2e972c;
+  transition: color 0.4s, text-shadow 0.4s;
+}
+
+.language-selector-link:hover {
+  color: #376436;
+  text-shadow: 1px 1px 2px #2e972c;
+  text-decoration: none;
+}
+
+/* ADS LIST */
+
+.articles-title {
+  text-align: center;
+  margin: 1rem;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.no-data {
+  width: 100%;
+  text-align: center;
 }
 
 /* ADS Error */
 
-.body-bg-img{
-    background-image: url(../assets/error404.jpg);
-    background-repeat: no-repeat;
-    background-position:bottom;
-    height: 100vh;
+.error-msg {
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.body-bg-img {
+  background-image: url(../assets/error404.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  height: calc(100vh - 150px);
+}
+
+/* FORM SIGN IN */
+
+.form-signin-title {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.form-signin {
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 1rem;
 }
