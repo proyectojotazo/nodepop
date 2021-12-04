@@ -1,7 +1,10 @@
 module.exports = {
-  codifyPostError: require('./codifyPostError'),
+  codifyApiError: require('./codifyApiError'),
   createAd: require('./createAd'),
   getAdsRowed: require('./getAdsRowed'),
   getTags: require('./getTags'),
   getQuery: require('./getQuery/getQuery'),
+  imageFilter: require('./imageFilter'),
+  createThumbnail: require('./createThumbnail'),
+  parsePath: require('./parsePath')
 }

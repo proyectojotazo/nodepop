@@ -1,18 +1,22 @@
 const apiRouter = require('express').Router()
 
-const { apiController }  = require('../controllers')
+const { uploadFile } = require('../lib/multerConfig')
 
-const { postValidation } = require('../middlewares/errorHandler')
+const { apiController } = require('../controllers')
 
-apiRouter.get('/', apiController.getAll)
+const { jwtAuth } = require('../middlewares')
 
-apiRouter.get('/anuncios', apiController.getFiltered)
+apiRouter.post('/', 
+  jwtAuth, 
+  uploadFile, 
+  apiController.post)
+
+apiRouter.get('/', jwtAuth, apiController.getAll)
+
+apiRouter.get('/anuncios', jwtAuth, apiController.getFiltered)
+
+apiRouter.post('/authenticate', apiController.authenticate)
 
 apiRouter.get('/tags', apiController.getTags)
-
-apiRouter.post('/', apiController.post)
-
-// Middleware validación POST
-apiRouter.use(postValidation)
 
 module.exports = apiRouter

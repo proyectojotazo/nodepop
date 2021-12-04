@@ -3,11 +3,16 @@
 <h2 class="articles-title"><%= __('Ads List') %></h2>
 <!-- Ads Container -->
 <div class="container">
-  <% if (rows.length !==0) { %> <%- include('adsList', { rows }) %> <% } else
-  { %>
-  <h5 class="no-data">
-    <%= __('No ads were found with the entered parameters') %>
-  </h5>
+  <% if (rows.length !==0) { %> 
+    <%- include('adsList', { rows }) %> 
+  <% } else { %>
+    <h5 class="no-data">
+    <% if (hasParams) { %>
+      <%= __('No ads were found with the entered parameters') %>
+    <% } else { %>
+      <%= __('No ads. Create your own!') %>  
+    <% } %>
+    </h5>
   <% } %>
 </div>
 <!-- Ads Container END -->

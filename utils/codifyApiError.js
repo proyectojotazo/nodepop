@@ -1,4 +1,5 @@
-const codifyError = (error) => {
+const codifyApiError = (error) => {
+  // Codificamos el error a mostrar en la api de las validaciones de mongo
   const errorCodified = {}
 
   Object.keys(error.errors).forEach((nameParam) => {
@@ -11,4 +12,4 @@ const codifyError = (error) => {
   return errorCodified
 }
 
-module.exports = codifyError
+module.exports = codifyApiError

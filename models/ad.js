@@ -16,11 +16,18 @@ const adSchema = new mongoose.Schema({
   precio: {
     type: Number,
     required: [true, 'Precio del articulo requerido'],
+    validate: [{
+      validator: (v) => v > 0,
+      message: 'El precio debe tener un valor entero positivo'
+    }],
     index: true,
   },
   photo: {
     type: String,
     required: [true, 'Imagen del articulo requerida'],
+  },
+  thumbnail: {
+    type: String,
   },
   tags: {
     type: [String],

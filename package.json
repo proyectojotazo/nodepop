@@ -14,16 +14,21 @@
     "fullDB:dev": "npm run installDB:full && npm run dev"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-async-handler": "^1.1.4",
+    "express-validator": "^6.13.0",
     "http-errors": "~1.6.3",
     "i18n": "^0.13.3",
+    "jimp": "^0.16.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.4",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "multer": "^1.4.3"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

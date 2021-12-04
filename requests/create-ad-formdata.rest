@@ -1,0 +1,38 @@
+POST http://localhost:3009/apiv1
+Content-Type: multipart/form-data
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWE0ZDY4MjMwMjExMDUxMGM3OGU5ODQiLCJpYXQiOjE2Mzg0NTgzOTgsImV4cCI6MTYzODYzMTE5OH0.S_E0aBVJKVjoWC35G5b62f2IanVClqqtjCoHcTij0PQ
+
+{
+    "nombre": "plato",
+    "venta": true,
+    "precio": 230,
+    "photo": "lafoto.png",
+    "tags": ["ajare"]
+}
+
+###
+POST http://localhost:3009/apiv1
+Content-Type: multipart/form-data; charset=utf-8; boundary="another cool boundary"
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWE0ZDY4MjMwMjExMDUxMGM3OGU5ODQiLCJpYXQiOjE2Mzg0NTgzOTgsImV4cCI6MTYzODYzMTE5OH0.S_E0aBVJKVjoWC35G5b62f2IanVClqqtjCoHcTij0PQ
+
+--another cool boundary
+Content-Disposition: form-data; name="nombre"
+
+articulo
+--another cool boundary
+Content-Disposition: form-data; name="venta"
+
+true
+--another cool boundary
+Content-Disposition: form-data; name="precio";
+
+230
+--another cool boundary
+Content-Disposition: form-data; name="photo"; filename="iphone11.jpg"
+Content-Type: image/jpeg
+
+--another cool boundary
+Content-Disposition: form-data; name="tags";
+
+mitag
+--another cool boundary--

@@ -10,8 +10,6 @@ changeLocaleRouter.get('/:locale', (req, res, next) => {
 
   const { referer: lastUrl } = req.headers
 
-  console.log(lastUrl)
-
   res.redirect(lastUrl)
 })
 

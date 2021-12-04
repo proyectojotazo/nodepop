@@ -38,7 +38,7 @@
 }
 
 .navbar-collapse {
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .navbar-nav {
@@ -145,4 +145,13 @@
   width: 40%;
   margin: 0 auto;
   margin-top: 1rem;
+}
+
+.mh-50{
+  min-height: 50px;
+  margin-bottom: 1rem;
+}
+
+.hidden{
+  visibility: hidden;
 }
