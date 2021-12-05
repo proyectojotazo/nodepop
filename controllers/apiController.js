@@ -47,21 +47,8 @@ apiController.getTags = asyncHandler(async (req, res, next) => {
 apiController.post = asyncHandler(async (req, res, next) => {
   // Crear anuncio
 
-  if (!req.file) {
-    const err = {
-      errors: {
-        photo: {
-          name: 'ValidatorError',
-          message: 'Archivo de foto requerido',
-        },
-      },
-      _message: 'Ad validation failed',
-    }
-    return res.status(400).json({ err })
-  }
+  const { photoFilePath, thumbnailPath } = parsePath(req.file.path) 
 
-  const photoFilePath = parsePath(req.file.path) // data\\uploads\\photo-1638538318979.jpg
-  const thumbnailPath = parsePath(photoFilePath, true) // data\\thumbnails\\photo-1638538318979.jpg
   await createThumbnail(photoFilePath, thumbnailPath)
   const data = { ...req.body, photo: photoFilePath, thumbnail: thumbnailPath }
 

@@ -1,20 +1,18 @@
-const parsePath = (pathToParse, isThumbnail = false) => {
+const parsePath = (pathToParse) => {
+  let photoFilePath = ''
+  let thumbnailPath = ''
 
-  let parsedPath = []
+  photoFilePath = pathToParse
+    .split('\\')
+    .filter((el) => el !== 'public') // quitamos 'public' del path
+    .join('\\')
 
-  if (isThumbnail) {
-    parsedPath = pathToParse
-      .split('\\')
-      .map((el) => (el === 'uploads' ? 'thumbnails' : el))
-      .join('\\')
-  } else {
-    parsedPath = pathToParse
-      .split('\\')
-      .filter((el) => el !== 'public') // quitamos 'public' del path
-      .join('\\')
-  }
+  thumbnailPath = photoFilePath
+    .split('\\')
+    .map((el) => (el === 'uploads' ? 'thumbnails' : el))
+    .join('\\')
 
-  return parsedPath
+  return { photoFilePath, thumbnailPath }
 }
 
 module.exports = parsePath

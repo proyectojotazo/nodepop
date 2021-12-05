@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
 // Error middlewares
-const { tokenErrors, routeNotFound, errorHandler } = require('./middlewares')
+const { errorHandler } = require('./middlewares')
 
 // Routes
 const {
@@ -17,7 +17,6 @@ const {
   apiRouter,
   changeLocaleRouter,
   loginRouter,
-  createAdRouter,
   signInRouter,
 } = require('./routes')
 
@@ -58,7 +57,6 @@ app.use(i18n.init)
 app.use('/', adsRouter)
 app.use('/login', loginRouter)
 app.use('/sign-in', signInRouter)
-app.use('/create-ad', createAdRouter)
 app.use('/change-locale', changeLocaleRouter)
 
 // api routes
@@ -69,12 +67,8 @@ app.use(function (req, res, next) {
   next(createError(404))
 })
 
-// TODO: Manejar los errores en un middleware
 // Errors
-
 app.use(errorHandler)
-// app.use(tokenErrors) // ApiToken errors
-// app.use(routeNotFound) // Ads/Apiv1 route not found
 
 // error handler
 app.use(function (err, req, res) {

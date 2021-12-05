@@ -24,17 +24,23 @@
 }
 
 .card {
-  border: 1px solid #000;
   margin-bottom: 1rem;
   padding-top: 1rem;
   text-align: center;
-  width: 42%;
   margin: 0.5rem;
 }
 
-.card-header {
-  font-size: 1.8rem;
-  color: #3b7c39;
+.card-img {
+  width: 100px;
+  height: 100px;
+  align-self: center;
+}
+
+.card-title {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.6rem;
+  width: 100%;
+  font-size: 2rem;
 }
 
 .navbar-collapse {
@@ -147,11 +153,11 @@
   margin-top: 1rem;
 }
 
-.mh-50{
+.mh-50 {
   min-height: 50px;
   margin-bottom: 1rem;
 }
 
-.hidden{
+.hidden {
   visibility: hidden;
 }

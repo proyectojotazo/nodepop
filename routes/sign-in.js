@@ -25,7 +25,7 @@ signInRouter.post(
       .isLength({ min: 4 })
       .withMessage('password must be at least 4 characters'),
   ],
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     let data = req.app.get('data')
 
     // Obtener datos introducidos
@@ -57,13 +57,15 @@ signInRouter.post(
       await newUser.save()
       // Redirigir a la home (de momento)
       res.redirect('/')
-    } catch (error) {
+    } catch (err) {
       // 11000 Usuario duplicado en Mongo
-      if (error.code === 11000) {
+      if (err.code === 11000) {
         data = {
           ...data,
           errors: {...data.errors, email: { message: res.__('User already exists') } },
         }
+      } else {
+        next(err)
       }
       return res.render('ads/sign-in', data)
     }

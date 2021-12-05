@@ -30,5 +30,7 @@
 	"No ads with the specified parameters were found": "No se han encontrado anuncios con los parametros especificados",
 	"invalid token": "Token inválido",
 	"No ads were found with the entered parameters": "No se han encontrado anuncios con los parámetros especificados",
-	"No ads. Create your own!": "No hay anuncios. Crea el tuyo!"
+	"No ads. Create your own!": "No hay anuncios. Crea el tuyo!",
+	"Show Image": "Mostrar Imagen",
+	"Ad Details": "Detalles Anuncio"
 }

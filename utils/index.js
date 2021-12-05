@@ -1,5 +1,4 @@
 module.exports = {
-  codifyApiError: require('./codifyApiError'),
   createAd: require('./createAd'),
   getAdsRowed: require('./getAdsRowed'),
   getTags: require('./getTags'),

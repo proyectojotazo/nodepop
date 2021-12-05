@@ -1,6 +1,6 @@
 const apiRouter = require('express').Router()
 
-const { uploadFile } = require('../lib/multerConfig')
+const { upload } = require('../middlewares')
 
 const { apiController } = require('../controllers')
 
@@ -8,7 +8,7 @@ const { jwtAuth } = require('../middlewares')
 
 apiRouter.post('/', 
   jwtAuth, 
-  uploadFile, 
+  upload, 
   apiController.post)
 
 apiRouter.get('/', jwtAuth, apiController.getAll)

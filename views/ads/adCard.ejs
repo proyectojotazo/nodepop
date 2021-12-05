@@ -1,0 +1,20 @@
+<div class="card" style="width: 18rem">
+  <img src="<%= ad.thumbnail %>" class="card-img" alt="<%= ad.nombre %>" />
+  <div class="card-body">
+    <h5 class="card-title"><%= ad.nombre %></h5>
+    <p class="card-text">Precio: <%= ad.precio %></p>
+    <p class="card-text">
+      <% if (ad.venta) { %> En venta <% } else { %> En búsqueda <% }%>
+    </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Tags</li>
+    <% ad.tags.forEach(tag => { %>
+    <li class="list-group-item"><%= tag %></li>
+    <% }) %>
+  </ul>
+  <div class="card-body">
+    <a href="<%= ad.photo %>" class="card-link"><%= __('Show Image') %></a><br>
+    <a href="/ad/<%= ad.id %>" class="card-link"><%= __('Ad Details') %></a>
+  </div>
+</div>
