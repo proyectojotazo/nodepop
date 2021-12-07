@@ -1,10 +1,15 @@
 <%- include('header') -%>
 
 <h2 class="articles-title"><%= __('Ads List') %></h2>
+
 <!-- Ads Container -->
 <div class="container">
-  <% if (rows.length !==0) { %> 
-    <%- include('adsList', { rows }) %> 
+  <% if (ads.length !==0) { %> 
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+      <% ads.forEach(ad=> { %> 
+        <%- include('adCard', { ad }) %> 
+      <% }) %>
+    </div> 
   <% } else { %>
     <h5 class="no-data">
     <% if (hasParams) { %>

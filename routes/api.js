@@ -11,7 +11,7 @@ apiRouter.post('/',
   upload, 
   apiController.post)
 
-apiRouter.get('/', jwtAuth, apiController.getAll)
+apiRouter.get('/', apiController.getAll)
 
 apiRouter.get('/anuncios', jwtAuth, apiController.getFiltered)
 

@@ -1,14 +1,19 @@
-const Jimp = require('jimp')
+const sharp = require('sharp')
 
-const createThumbnail = async (pathToRead, pathToWrite) => {
+const mainDir = __dirname
+  .split('\\')
+  .filter((el) => el !== 'utils')
+  .join('\\')
 
+const createThumbnail = async (pathToRead, pathToWrite, measures) => {
+  const readDir = `${mainDir}\\${pathToRead}`
+  const writeDir = `${mainDir}\\${pathToWrite}`
   try {
-    const img = await Jimp.read(`public\\${pathToRead}`)
-    img
-      .cover(100, 100)
-      .write(`public\\${pathToWrite}`)
+    await sharp(readDir)
+      .resize(measures.width, measures.height)
+      .toFile(writeDir)
   } catch (error) {
-    console.log(error.message)
+    throw new Error(error.message)
   }
 }
 

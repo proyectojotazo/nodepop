@@ -16,7 +16,6 @@ const jwtAuth = async (req, res, next) => {
     next()
     return
   } catch (error) {
-    console.log('Entro en error')
     error.status = 401
     next(error)
     return

@@ -1,26 +1,38 @@
 const mongoose = require('mongoose')
 
-const { Ad } = require('./models')
+const { Ad, User } = require('./models')
 
 const { MONGODB_URI } = require('./lib/config')
 
 const { ads } = require('./ads.json')
-const { fullads } = require('./fullads.json')
 
-const argvs = process.argv
+const addDefaultUser = async () => {
+  const defaultUser = {
+    email: 'user@example.com',
+    password: await User.hashPassword('1234'),
+  }
+
+  await User.create(defaultUser)
+
+  console.log('1 user added')
+}
 
 const deleteAllData = async () => {
-  const { deletedCount } = await Ad.deleteMany()
-  console.log(`Deleted ${deletedCount} ads`)
+  const { deletedCount: deletedAds } = await Ad.deleteMany()
+  const { deletedCount: deletedUsers } = await User.deleteMany()
+
+  console.log(`Deleted ${deletedAds} ads`)
+  console.log(`Deleted ${deletedUsers} user`)
 }
 
 const loadDefaultData = async () => {
-  const adsToAdd = argvs[2] === 'fullads' ? fullads : ads
-  const result = await Ad.insertMany(adsToAdd)
-  console.log(`Inserted ${result.length} ads`)
+  await addDefaultUser()
+  const result = await Ad.insertMany(ads)
+  console.log(`${result.length} ads added`)
 }
 
 const main = async () => {
+  // TODO: Asegurar BBDD
   await mongoose.connect(MONGODB_URI)
   console.info(`Connected to MongoDB, at ${mongoose.connection.name} database`)
   await deleteAllData()

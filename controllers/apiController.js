@@ -4,34 +4,38 @@ const jwt = require('jsonwebtoken')
 
 const { Ad, User } = require('../models')
 
-const {
-  createAd,
-  getTags,
-  getQuery,
-  createThumbnail,
-  parsePath,
-} = require('../utils')
+const thumbnailRequest = require('../microservices/thumbnailRequest')
+
+const { createAd, getTags, getQuery, getParsedPath } = require('../utils')
 
 const apiController = {}
 
 apiController.getAll = asyncHandler(async (req, res, next) => {
   // Obtener todos los articulos
-  const ads = await Ad.find()
+  const { token } = req.query
+  const paramToRedirect = (token && `?token=${token}`) || ''
 
-  res.json(ads)
+  res.redirect(`/apiv1/anuncios${paramToRedirect}`)
 })
 
 apiController.getFiltered = asyncHandler(async (req, res, next) => {
   // Articulos filtrados en API
+  const onlyToken = Object.keys(req.query).length === 1
+
   const [query, optionals] = getQuery(req.query)
 
   const adsFiltered = await Ad.find(query, null, optionals)
 
-  if (adsFiltered.length === 0)
+  if (adsFiltered.length === 0) { // Si no vienen anuncios
+    if (onlyToken) { // si solo se le ha pasado token
+      return res.json({
+        message: res.__('No ads. Create your own!'),
+      })
+    } // si hay mas parametros en la URL
     return res.json({
       message: res.__('No ads with the specified parameters were found'),
     })
-
+  }
   res.json(adsFiltered)
 })
 
@@ -47,10 +51,21 @@ apiController.getTags = asyncHandler(async (req, res, next) => {
 apiController.post = asyncHandler(async (req, res, next) => {
   // Crear anuncio
 
-  const { photoFilePath, thumbnailPath } = parsePath(req.file.path) 
+  const { photoPath, thumbnailPath, photoPathForAd, thumbnailPathForAd } =
+    getParsedPath(req.file.path)
 
-  await createThumbnail(photoFilePath, thumbnailPath)
-  const data = { ...req.body, photo: photoFilePath, thumbnail: thumbnailPath }
+  try {
+    await thumbnailRequest(photoPath, thumbnailPath)
+  } catch (e) {
+    next(e)
+    return
+  }
+
+  const data = {
+    ...req.body,
+    photo: photoPathForAd,
+    thumbnail: thumbnailPathForAd,
+  }
 
   const newAd = createAd(data, Ad)
   const savedAd = await newAd.save()
@@ -59,7 +74,7 @@ apiController.post = asyncHandler(async (req, res, next) => {
 })
 
 apiController.authenticate = asyncHandler(async (req, res, next) => {
-  // Recogemos emaill y password del usuario que hace la petición
+  // Recogemos email y password del usuario que hace la petición
   const { email, password } = req.body
 
   // Comprobamos que el usuario exista en la base de datos

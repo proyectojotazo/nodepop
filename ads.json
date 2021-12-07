@@ -1,18 +1,36 @@
 {
   "ads": [
     {
-      "nombre": "Bike",
-      "venta": true,
-      "precio": 230.15,
-      "photo": "bike.jpg",
-      "tags": ["lifestyle", "motor"]
-    },
-    {
-      "nombre": "Iphone 11",
+      "nombre": "Ipad",
       "venta": false,
       "precio": 486.0,
-      "photo": "iphone11",
-      "tags": ["lifestyle", "mobile"]
+      "photo": "data\\uploads\\photo-1638912273316.jpg",
+      "thumbnail": "data\\thumbnails\\photo-1638912273316.jpg",
+      "tags": ["tecnologia", "móviles"]
+    },
+    {
+      "nombre": "Game gear",
+      "venta": true,
+      "precio": "299",
+      "photo": "data\\uploads\\photo-1638912344794.jpg",
+      "thumbnail": "data\\thumbnails\\photo-1638912344794.jpg",
+      "tags": ["videojuegos", "consolas", "retro"]
+    },
+    {
+      "nombre": "Pala padel",
+      "venta": true,
+      "precio": 50,
+      "photo": "data\\uploads\\photo-1638912392004.jpg",
+      "thumbnail": "data\\thumbnails\\photo-1638912392004.jpg",
+      "tags": ["deporte", "padel", "seminuevo"]
+    },
+    {
+      "nombre": "Mando XBOX360",
+      "venta": false,
+      "precio": 39.9,
+      "photo": "data\\uploads\\photo-1638912449470.jpg",
+      "thumbnail": "data\\thumbnails\\photo-1638912449470.jpg",
+      "tags": ["videojuegos", "consolas"]
     }
   ]
 }

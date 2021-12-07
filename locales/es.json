@@ -32,5 +32,9 @@
 	"No ads were found with the entered parameters": "No se han encontrado anuncios con los parámetros especificados",
 	"No ads. Create your own!": "No hay anuncios. Crea el tuyo!",
 	"Show Image": "Mostrar Imagen",
-	"Ad Details": "Detalles Anuncio"
+	"Ad Details": "Detalles Anuncio",
+	"jwt expired": "jwt expirado",
+	"No se ha proporcionado un token": "No se ha proporcionado un token",
+	"jwt malformed": "jwt malformado",
+	"Credenciales inválidas": "Credenciales inválidas"
 }

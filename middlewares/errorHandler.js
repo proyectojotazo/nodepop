@@ -16,7 +16,7 @@ const codifyApiError = (error) => {
 
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
-  console.log(err)
+  console.log('errorHandler', err)
   if (err._message) {
     // mongo errors validations
     err = codifyApiError(err)

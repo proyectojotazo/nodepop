@@ -27,7 +27,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 // global locals
-// TODO: Setearlo en los forms
+// TODO: Setearlo en los forms ?
 app.set('data', {
   values: {
     email: '',
