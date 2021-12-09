@@ -58,6 +58,16 @@
 .header {
   border-bottom: 1px solid black;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  align-items: center;
+}
+
+.welcome-msg{
+    padding: 0 .5rem;
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 .title {
@@ -68,13 +78,13 @@
     rgba(55, 96, 54, 1) 50%,
     rgba(48, 48, 48, 1) 53%
   );
-  background-clip: border-box;
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  font-family: OpenSans-ExtraBoldItalic, Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 5rem;
-  padding-bottom: 1rem;
-  text-align: center;
+    background-clip: border-box;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-family: OpenSans-ExtraBoldItalic, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 5rem;
+    text-align: center;
+    flex-grow: 1;
 }
 
 /* LANGUAGE SELECTOR */
@@ -82,14 +92,10 @@
 .wrapper-language-selector {
   display: flex;
   flex-direction: column;
-  margin-right: 1rem;
-  margin-top: 1rem;
-  position: absolute;
-  right: 0;
-  top: 0;
 }
 
 .language-selector-list {
+  padding: 0;
   list-style: none;
 }
 

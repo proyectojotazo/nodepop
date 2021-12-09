@@ -13,13 +13,13 @@
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
       name="email"
-      value="<% if(values.email) { %><%= values.email %> <% } %>"
+      value="<% if(locals.data.values.email) { %><%= locals.data.values.email %> <% } %>"
     />
   </div>
 
-  <% if (errors.email && errors.email.message !== '') { %>
+  <% if (locals.data.errors.email && locals.data.errors.email.message !== '') { %>
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <%= __(errors.email.message) %>
+    <%= __(locals.data.errors.email.message) %>
     <button
       type="button"
       class="btn-close"
@@ -37,12 +37,12 @@
       type="password"
       class="form-control"
       id="exampleInputPassword1"
-      value="<% if(values.password) { %><%= values.password %> <% } %>"
+      value="<% if(locals.data.values.password) { %><%= locals.data.values.password %> <% } %>"
     />
   </div>
-  <% if (errors.password && errors.password.message !== '') { %>
+  <% if (locals.data.errors.password && locals.data.errors.password.message !== '') { %>
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <%= __(errors.password.message) %>
+    <%= __(locals.data.errors.password.message) %>
     <button
       type="button"
       class="btn-close"

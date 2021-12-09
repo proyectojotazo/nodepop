@@ -34,5 +34,10 @@
 	"Show Image": "Show Image",
 	"Ad Details": "Ad Details",
 	"jwt expired": "jwt expired",
-	"jwt malformed": "jwt malformed"
+	"jwt malformed": "jwt malformed",
+	"Email requerido": "Email requerido",
+	"Contraseña requerido": "Contraseña requerido",
+	"Email inválido": "Email inválido",
+	"La contraseña debe contener un mínimo de 4 caracteres": "La contraseña debe contener un mínimo de 4 caracteres",
+	"Logout": "Logout"
 }

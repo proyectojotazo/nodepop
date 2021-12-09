@@ -4,15 +4,15 @@
 
 <!-- Ads Container -->
 <div class="container">
-  <% if (ads.length !==0) { %> 
+  <% if (ads.length !== 0) { %> <!-- Si hay anuncios...-->
     <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
       <% ads.forEach(ad=> { %> 
         <%- include('adCard', { ad }) %> 
       <% }) %>
     </div> 
-  <% } else { %>
+  <% } else { %> <!-- Si no hay anuncios... -->
     <h5 class="no-data">
-    <% if (hasParams) { %>
+    <% if (hasParams) { %> <!-- Si se pasan parametros para buscar... -->
       <%= __('No ads were found with the entered parameters') %>
     <% } else { %>
       <%= __('No ads. Create your own!') %>  

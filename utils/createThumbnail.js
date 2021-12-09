@@ -12,6 +12,7 @@ const createThumbnail = async (pathToRead, pathToWrite, measures) => {
     await sharp(readDir)
       .resize(measures.width, measures.height)
       .toFile(writeDir)
+    // TODO: Enviar la ruta del thumbnail?
   } catch (error) {
     throw new Error(error.message)
   }

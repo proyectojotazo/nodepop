@@ -36,5 +36,10 @@
 	"jwt expired": "jwt expirado",
 	"No se ha proporcionado un token": "No se ha proporcionado un token",
 	"jwt malformed": "jwt malformado",
-	"Credenciales inválidas": "Credenciales inválidas"
+	"Credenciales inválidas": "Credenciales inválidas",
+	"Email requerido": "Email requerido",
+	"Contraseña requerido": "Contraseña requerido",
+	"Email inválido": "Email inválido",
+	"La contraseña debe contener un mínimo de 4 caracteres": "La contraseña debe contener un mínimo de 4 caracteres",
+	"Logout": "Cerrar Sesión"
 }

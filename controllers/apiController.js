@@ -51,6 +51,8 @@ apiController.getTags = asyncHandler(async (req, res, next) => {
 apiController.post = asyncHandler(async (req, res, next) => {
   // Crear anuncio
 
+  console.log('path => ', req.file.path)
+
   const { photoPath, thumbnailPath, photoPathForAd, thumbnailPathForAd } =
     getParsedPath(req.file.path)
 

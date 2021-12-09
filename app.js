@@ -7,9 +7,11 @@ const createError = require('http-errors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
 
-// Error middlewares
-const { errorHandler } = require('./middlewares')
+// Custom Middlewares
+const { errorHandler, setLocalValues } = require('./middlewares')
 
 // Routes
 const {
@@ -17,6 +19,7 @@ const {
   apiRouter,
   changeLocaleRouter,
   loginRouter,
+  logoutRouter,
   signInRouter,
 } = require('./routes')
 
@@ -26,23 +29,6 @@ const app = express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-// global locals
-// TODO: Setearlo en los forms ?
-app.set('data', {
-  values: {
-    email: '',
-    password: '',
-  },
-  errors: {
-    email: {
-      message: '',
-    },
-    password: {
-      message: '',
-    },
-  },
-})
-
 // middlewares
 app.use(logger('dev'))
 app.use(express.json())
@@ -50,12 +36,26 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use(session({
+  name: 'user-session',
+  secret: process.env.USER_SESSION_SECRET,
+  saveUninitialized: true,
+  resave: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 2 // 2 dias
+  },
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI})
+}))
+
+app.use(setLocalValues)
+
 const i18n = require('./lib/i18nConfigure')
 app.use(i18n.init)
 
 // views routes
 app.use('/', adsRouter)
 app.use('/login', loginRouter)
+app.use('/logout', logoutRouter)
 app.use('/sign-in', signInRouter)
 app.use('/change-locale', changeLocaleRouter)
 

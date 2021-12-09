@@ -5,8 +5,7 @@ const { body, validationResult } = require('express-validator')
 const { User } = require('../models')
 
 signInRouter.get('/', (req, res) => {
-  const data = req.app.get('data')
-  res.render('ads/sign-in', data)
+  res.render('ads/sign-in')
 })
 
 signInRouter.post(
@@ -26,26 +25,24 @@ signInRouter.post(
       .withMessage('password must be at least 4 characters'),
   ],
   asyncHandler(async (req, res, next) => {
-    let data = req.app.get('data')
-
     // Obtener datos introducidos
     const { email, password } = req.body
 
     // Seteamos los datos introducidos en locals.data
-    data = { ...data, values: { email, password } }
+    res.locals.data = { ...res.locals.data, values: { email, password } }
 
     // Validación del registro con express-validator
     const errors = validationResult(req)
     
     if (!errors.isEmpty()) {
       errors.errors.forEach((errObj) => {
-        data = {
-          ...data,
-          errors: {...data.errors, [errObj.param]: { message: res.__(errObj.msg) } },
+        res.locals.data = {
+          ...res.locals.data,
+          errors: {...res.locals.data.errors, [errObj.param]: { message: res.__(errObj.msg) } },
         }
       })
     
-      return res.render('ads/sign-in', data)
+      return res.render('ads/sign-in')
     }
 
     try {
@@ -60,14 +57,14 @@ signInRouter.post(
     } catch (err) {
       // 11000 Usuario duplicado en Mongo
       if (err.code === 11000) {
-        data = {
-          ...data,
-          errors: {...data.errors, email: { message: res.__('User already exists') } },
+        res.locals.data = {
+          ...res.locals.data,
+          errors: {...res.locals.data.errors, email: { message: res.__('User already exists') } },
         }
       } else {
         next(err)
       }
-      return res.render('ads/sign-in', data)
+      return res.render('ads/sign-in')
     }
   })
 )

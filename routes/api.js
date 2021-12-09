@@ -1,10 +1,8 @@
 const apiRouter = require('express').Router()
 
-const { upload } = require('../middlewares')
-
 const { apiController } = require('../controllers')
 
-const { jwtAuth } = require('../middlewares')
+const { upload, jwtAuth } = require('../middlewares')
 
 apiRouter.post('/', 
   jwtAuth, 
