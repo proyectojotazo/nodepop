@@ -1,18 +1,17 @@
 const { Requester } = require('cote')
 const requester = new Requester({ name: 'worker-thumbnail' })
 
-async function thumbnailRequest(photoFilePath, thumbnailPath) {
+function thumbnailRequest(photoFilePath, thumbnailPath) {
   const req = {
     type: 'crear-thumbnail',
     photoFilePath,
     thumbnailPath,
   }
-  // eslint-disable-next-line no-useless-catch
-  try {
-    await requester.send(req)
-  } catch (error) {
-    throw error
-  }
+
+  requester
+    .send(req)
+    .then((msg) => console.log(msg))
+    .catch((err) => console.error(err))
 }
 
 module.exports = thumbnailRequest

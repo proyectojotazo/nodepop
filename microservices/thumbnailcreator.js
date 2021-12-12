@@ -10,6 +10,7 @@ const measures = {
 
 responder.on('crear-thumbnail', async (req, done) => {
   const { photoFilePath, thumbnailPath } = req
+  
   try {
     await createThumbnail(photoFilePath, thumbnailPath, measures)
     done(null, `Thumbnail created at: ${thumbnailPath}`)

@@ -26,8 +26,10 @@ apiController.getFiltered = asyncHandler(async (req, res, next) => {
 
   const adsFiltered = await Ad.find(query, null, optionals)
 
-  if (adsFiltered.length === 0) { // Si no vienen anuncios
-    if (onlyToken) { // si solo se le ha pasado token
+  if (adsFiltered.length === 0) {
+    // Si no vienen anuncios
+    if (onlyToken) {
+      // si solo se le ha pasado token
       return res.json({
         message: res.__('No ads. Create your own!'),
       })
@@ -54,13 +56,6 @@ apiController.post = asyncHandler(async (req, res, next) => {
   const { photoPath, thumbnailPath, photoPathForAd, thumbnailPathForAd } =
     getParsedPath(req.file.path)
 
-  try {
-    await thumbnailRequest(photoPath, thumbnailPath)
-  } catch (e) {
-    next(e)
-    return
-  }
-
   const data = {
     ...req.body,
     photo: photoPathForAd,
@@ -69,6 +64,8 @@ apiController.post = asyncHandler(async (req, res, next) => {
 
   const newAd = createAd(data, Ad)
   const savedAd = await newAd.save()
+
+  thumbnailRequest(photoPath, thumbnailPath)
 
   res.status(201).json(savedAd)
 })
