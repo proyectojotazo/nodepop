@@ -21,12 +21,16 @@
 
   - PORT = `<puerto a usar>`
   - MONGODB_URI = `<mongodb_URI>`
+  - JWT_SECRET = `<your secret>`
+  - USER_SESSION_SECRET = `<your secret>`
 
   > Una vez hayamos rellenado los campos correspondientes, renombraremos el archivo `.env.default` a `.env`. 
 
 - En caso de no rellenar las variables de entorno, por defecto la aplicación usará el puerto `3000` y nos generará una base de datos llamada `anuncios`
 
 - Una vez tengamos todo lo anterior realizado, podremos realizar los siguientes ***Scripts***
+
+  > Se recomienda, una vez completados los anteriores puntos, arrancar con el script ***npm run installDB*** antes de iniciar la aplicación, para el correcto funcionamiento de la misma
 
 ## ***SCRIPTS***
 ---
@@ -43,45 +47,80 @@
 
     - Script que nos inicializará la base de datos introduciendo 2 anuncios por defecto en nuestra base de datos
 
-  - `npm run installDB:full`:
+  - `npm run pm2:start`:
 
-    - Script que nos inicializará la base de datos introduciendo múltiples anuncios por defecto en nuestra base de datos
+    - Script que nos iniciará, tanto la aplicación como el microservicio con pm2
+  
+  - `npm run pm2:stop`:
 
-  - `npm run default:start`:
+    - Script que detendrá, tanto la aplicación como el microservicio con pm2
+  
+  - `npm run pm2:delete`:
 
-    - Script combinado de: `npm run installDB` y `npm start`
+    - Script que nos borrará, tanto la aplicación como el microservicio de pm2
+  
+  - `npm run pm2:reload`:
 
-  - `npm run default:dev`:
-
-    - Script combinado de: `npm run installDB` y `npm run dev`
-
-  - `npm run fullDB:start`:
-
-    - Script combinado de: `npm run installDB:full` y `npm start`
-
-  - `npm run fullDB:dev`:
-
-    - Script combinado de: `npm run installDB:full` y `npm run dev`
+    - Script que nos recargará, tanto la aplicación como el microservicio con pm2
 
 
-## ***RUTAS***
+
+## ***RUTAS FRONT***
 ---
 
-- `localhost:PORT`:
+- Tipo: **GET** `localhost:PORT`:
 
   - Nos mostrará la página inicial del proyecto con los artículos incluidos por defecto habiendo ejecutado el script `npm run installDB`
 
-- `localhost:PORT/apiv1`:
+- Tipo: **GET** `localhost:PORT/sign-in`:
 
-  - Nos mostrará el listado de artículos en formato `JSON`
+  - Nos mostrará la página del formulario para crear un nuevo usuario en nuestra base de datos
 
-- `localhost:PORT/images/<nombreimagen>`
+- Tipo: **POST** `localhost:PORT/sign-in`:
 
-  - Nos mostrará la imagen que tengamos en la carpeta `/images`.
+  - Nos realizará la creación del usuario en nuestra base de datos
 
-  - Deberemos de tener la imagen en la ruta `public/images` y el `<nombreimagen>` deberá ser el nombre del archivo y su extension. Ej: `public/images/bike.jpg` la ruta quedaría así: `localhost:PORT/images/bike.jpg`
+- Tipo: **GET** `localhost:PORT/login`:
 
-  > Por defecto tenemos 2 imagenes, bike.jpg y iphone11.jpg. Si quieres añadir más imagenes, debes introducirlas en `public/images`
+  - Nos mostrará la página del formulario para iniciar sesión con un usuario que tengamos en nuestra base de datos
+
+- Tipo: **POST** `localhost:PORT/login`:
+
+  - Nos realizará el inicio de sesión con el usuario
+
+- Tipo: **GET** `localhost:PORT/logout`:
+
+  - Nos cerrará la sesión del usuario
+
+## ***RUTAS API***
+---
+
+- Tipo: **POST** `localhost:PORT/apiv1/authenticate`
+
+  - Realizando esta petición con un body: 
+  ```
+  {
+    email: emailUsuario,
+    password: passwordUsuario
+  }
+  ```
+  Nos devolverá un token ***JWT*** con el cual nos podremos identificar en las rutas que lo requieran
+
+- Tipo: **GET** `localhost:PORT/apiv1` ***(PRIVADA POR JWT)***:
+
+  - Nos redireccionará a `localhost:PORT/apiv1/anuncios` 
+  - Deberemos pasarle, por cabeceras (o Headers) un parámetro llamado `Authorization` con el JWToken, o, por URL tal que:
+  `http://localhost:PORT/apiv1?token=JWTOKEN` o incluso en el body de la petición para que nos devuelva el listado de anuncios en `JSON`
+  - En el momento de la redirección ya nos pasará tambien el **JWT**
+  
+- Tipo: **POST** `localhost:PORT/apiv1` ***(PRIVADA POR JWT)***:
+
+  - Será la ruta sobre la que haremos la creación de anuncios con ***POSTMAN*** o cualquier otra aplicación para peticiones http
+
+- Tipo: **GET** `localhost:PORT/apiv1/anuncios`:
+
+  - Deberemos pasarle, por cabeceras (o Headers) un parámetro llamado `Authorization` con el JWToken, o, por URL tal que:
+  `http://localhost:PORT/apiv1/anuncios?token=JWTOKEN` o incluso en el body de la petición para que nos devuelva el listado de anuncios en `JSON`
 
 ## ***RUTAS FILTRADAS***
 ---
@@ -89,6 +128,8 @@
 - ***RUTA VISTA ANUNCIOS***: `localhost:PORT/?parametro1=valor&parametro2=valor`
 
 - ***RUTA VISTA API***: `localhost:PORT/apiv1/anuncios/?parametro1=valor&parametro2=valor`
+
+> Recordar que es una ruta protegida por JWToken
 
 - Parametros de filtrado permitidos:
 
@@ -137,7 +178,6 @@
     Con `sort=nombre` se ordenaría nuestra lista de anuncios a mostrar por nombre y con `sort=precio` por precio, de menor a mayor
 
   
-  
 ## ***CREAR NUEVOS ARTICULOS***
 ---
 
@@ -148,34 +188,21 @@
     - Deberemos crearnos una cuenta en [POSTMAN](https://www.postman.com)
     - Deberemos pasar los parametros como se indica en la siguiente imagen:
 
-      ![POST EN POSTMAN](public/readme-imgs/post-format-postman.png)
-
-    - La url donde hacer la petición ***POST*** será `http://localhost:XXXX/apiv1` donde `XXXX` será el puerto que tengamos asignado.
-
-    - Clickaremos en la pestaña ***BODY*** y seleccionaremos el tipo de codificación `x-www-form-urlencoded`
-
+    ***Token***
+    
+      ![POST EN POSTMAN](public/readme-imgs/Authorization.png)
+    ---
+    
     - Cada ***KEY*** será el párametro y el ***VALUE*** el valor que le queramos asignar a cada una
 
       > Recuerda que ***venta*** será un parámetro booleano que solo aceptará ***true*** o ***false*** en función de si el anuncio es para vender o que se está buscando ese artículo
 
-    - ***IMPORTANTE*** Para añadir más de un *tag* hemos de pasarle tantas ***KEY*** y ***VALUE*** como tags queramos, como en la imagen
+    ***Body***
+
+      ![POST EN POSTMAN](public/readme-imgs/Body.png)
 
     - Si todo está correcto, recibiremos la respuesta con un JSON con el anuncio creado
 
-  - **Visual Studio Code Extension:** ***REST Client***
+    ***Response***
 
-    - Debemos instalar la extensión ***REST Client***
-    
-    ![REST CLIENT](public/readme-imgs/post-rest-client.png)
-
-    - Una vez instalada vamos a la carpeta `requests` y renombramos el archivo `create-ad.def.rest` a `create-ad.rest` y lo abrimos.     
-
-    ![REST CLIENT EXAMPLE](public/readme-imgs/rest-client-example.png)
-
-    - El archivo tendrá los datos de la izquierda en un principio.
-
-    - Simplemente debemos de cambiar el `<PORT>` por el que tengamos asignado y rellenar los campos tal y como se indica en el ejemplo.
-
-    - Una vez tengamos todo rellenado deberemos clickar donde aparece el mensaje `Send Request`.
-
-    - Si todo está correcto, nos aparecerá la respuesta en el lateral, tal y como se ve a la derecha de la imagen
+      ![POST EN POSTMAN](public/readme-imgs/Respuesta.png)

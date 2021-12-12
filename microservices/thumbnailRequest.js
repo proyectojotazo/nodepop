@@ -1,5 +1,5 @@
 const { Requester } = require('cote')
-const requester = new Requester({ name: 'apiController-thumbnail' })
+const requester = new Requester({ name: 'worker-thumbnail' })
 
 async function thumbnailRequest(photoFilePath, thumbnailPath) {
   const req = {

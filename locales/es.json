@@ -41,5 +41,7 @@
 	"Contraseña requerido": "Contraseña requerido",
 	"Email inválido": "Email inválido",
 	"La contraseña debe contener un mínimo de 4 caracteres": "La contraseña debe contener un mínimo de 4 caracteres",
-	"Logout": "Cerrar Sesión"
+	"Logout": "Cerrar Sesión",
+	"Name": "Nombre",
+	"invalid signature": "Firma Inválida"
 }

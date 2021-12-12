@@ -57,7 +57,6 @@ loginRouter.post(
       return res.status(400).render('ads/login')
     }
 
-    // TODO: crear la sesion
     req.session.usuarioLogado = {
       _id: user._id
     }

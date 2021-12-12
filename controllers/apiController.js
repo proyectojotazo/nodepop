@@ -13,7 +13,7 @@ const apiController = {}
 apiController.getAll = asyncHandler(async (req, res, next) => {
   // Obtener todos los articulos
   const { token } = req.query
-  const paramToRedirect = (token && `?token=${token}`) || ''
+  const paramToRedirect = token ? `?token=${token}` : ''
 
   res.redirect(`/apiv1/anuncios${paramToRedirect}`)
 })
@@ -51,8 +51,6 @@ apiController.getTags = asyncHandler(async (req, res, next) => {
 apiController.post = asyncHandler(async (req, res, next) => {
   // Crear anuncio
 
-  console.log('path => ', req.file.path)
-
   const { photoPath, thumbnailPath, photoPathForAd, thumbnailPathForAd } =
     getParsedPath(req.file.path)
 
@@ -87,7 +85,7 @@ apiController.authenticate = asyncHandler(async (req, res, next) => {
     return res.status(401).json({ error: res.__('Invalid credentials') })
   }
 
-  // Si se encuentra generamos el token y lo almacenamos en el objeto request
+  // Si se encuentra generamos el token
   const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
     expiresIn: '2d',
   })
